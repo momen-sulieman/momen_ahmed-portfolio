@@ -1,0 +1,110 @@
+---
+title: Bakemart
+slug: bakemart
+summary: A Flutter app that puts a bakery's storefront and its books in one place — customers order, drivers deliver on their own terms, and owners track production, waste and payroll as it happens.
+date: 2026-10-10
+role: Mobile developer & systems analyst
+period: 2026 – present
+stack:
+  - Flutter
+  - Dart
+  - Supabase
+  - Geolocation
+  - QR scanning
+  - Arabic / English
+featured: true
+cover: ./images/bakemart-cover.png
+gallery:
+  - image: ./images/bakemart-home.png
+    caption: Home — nearby bakeries with their rating and distance.
+  - image: ./images/bakemart-bakery.png
+    caption: A bakery's storefront. Every item carries price, weight and rating.
+  - image: ./images/bakemart-product.png
+    caption: Product detail, including the nutrition breakdown per piece.
+  - image: ./images/bakemart-work.png
+    caption: Work mode — set a delivery radius, then accept nearby orders.
+  - image: ./images/bakemart-profile.png
+    caption: Profile and address, with a one-tap switch between Arabic and English.
+---
+
+A delivery app usually treats a bakery as a menu with a pin on a map. But taking
+orders is the easy half. The harder half is that a small bakery often can't say
+precisely what it produced last week, how much of it went in the bin, or what it
+owes the person who started at four in the morning.
+
+Bakemart does both halves in one app: a storefront customers order from, and the
+bookkeeping the owner actually runs the business on.
+
+## One app, three roles
+
+The bottom bar has three tabs — **Work**, **Home**, **My bakery** — and that's the
+whole product in one line. The same account can order bread, deliver someone
+else's order, and own the bakery that baked it. There's no separate driver app
+and no separate merchant app.
+
+I went that way because the alternative asks a lot of a small market: three
+listings, three installs, three accounts, and a customer who has to know which
+one to download. One app means one install and one identity.
+
+The cost is real, though. Every screen has to answer "who is this person right
+now," the build carries code most users never open, and the permission surface is
+wider than it would be if each role shipped separately. It's a trade I'd make
+again at this size, and probably reverse if the delivery side ever got big enough
+to deserve its own release cycle.
+
+## Delivery without the employment
+
+Anyone can switch on **Receive orders**, set how far they're willing to travel,
+and start accepting jobs. There's no application, no shift, and no contract —
+turn the toggle off and you're done for the day.
+
+The app takes no commission on the order. It calculates the delivery fee and
+nothing else, so the bakery keeps its margin and the driver keeps the fee. That
+rules out the obvious revenue model, which is a deliberate choice rather than an
+oversight: the thing that makes it worth installing in a small market is that it
+doesn't tax either side of a transaction they were already making.
+
+The constraints that remain are practical ones — a radius in kilometres, a cap on
+how many orders one person can hold at once, and a QR scan at pickup so the
+handoff between bakery and driver is confirmed by both ends rather than assumed.
+
+## The half nobody sees
+
+The owner side is where most of the thinking went. Owners link workers to the
+bakery and record production, sales and attendance against them, which rolls up
+into revenue, expenses, waste and net profit.
+
+The part I find most useful is also the least obvious: **a linked worker doesn't
+have to be a Bakemart user.** At least one real account anchors the bakery, but
+the rest can be virtual profiles that exist purely so payroll and attendance have
+somewhere to live. A bakery with six staff and one smartphone between them can
+still keep accurate books.
+
+The trade-off is that a virtual worker's record is the owner's word — there's no
+second party confirming attendance the way a real account could. I took that
+deal because the alternative is worse: requiring everyone to have an account
+means the books simply don't get kept.
+
+Inventory follows from the same records. Production quantities update as cycles
+are entered, so stock is a consequence of what was logged rather than a separate
+number someone has to remember to correct.
+
+## Why data entry got the most attention
+
+Bookkeeping features fail for a boring reason: if logging a bake takes a minute,
+nobody logs the bake, and by the end of the week the numbers are fiction.
+
+So entry speed was treated as the actual feature. Every number an owner types has
+to be fast enough to do mid-shift with flour on their hands, because the accuracy
+of everything downstream — waste, profit, payroll, stock — depends entirely on
+whether the entry happened at all.
+
+## Where it is now
+
+It's an ongoing build on Flutter and Dart with Supabase behind it, and it ships
+Arabic and English with a one-tap switch, since the users I'm building for don't
+all read the same interface.
+
+Still open: the owner-side reporting deserves more than running totals, and the
+pickup handoff is the piece I'd most want real drivers to stress-test before
+calling it finished.
