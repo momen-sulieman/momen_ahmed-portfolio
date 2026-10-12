@@ -44,10 +44,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (!project) notFound();
 
-  const links = [
-    project.links?.live && { label: "Live site", href: project.links.live },
-    project.links?.repo && { label: "Source", href: project.links.repo },
-  ].filter(Boolean) as Array<{ label: string; href: string }>;
+  const liveLink = project.links?.live;
+  const repoLink = project.links?.repo;
 
   return (
     <Section className="pt-16 sm:pt-20">
@@ -85,32 +83,41 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <p className="mt-6 max-w-2xl leading-7 text-pretty text-secondary">{project.summary}</p>
 
-          {links.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-4">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent transition-opacity hover:underline active:opacity-70"
-                >
-                  {link.label}
-                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </a>
-              ))}
+          {liveLink && (
+            <div className="mt-6">
+              <a
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent transition-opacity hover:underline active:opacity-70"
+              >
+                Live site
+                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </a>
             </div>
           )}
 
-          {project.apk && (
+          {(project.apk || repoLink) && (
             <div className="mt-6">
-              <Button asChild>
-                <a href={assetPath(project.apk)} download>
-                  <Download className="h-4 w-4" aria-hidden="true" />
-                  Download APK
-                </a>
-              </Button>
-              {project.apkNote && (
+              <div className="flex flex-wrap gap-3">
+                {project.apk && (
+                  <Button asChild>
+                    <a href={assetPath(project.apk)} download>
+                      <Download className="h-4 w-4" aria-hidden="true" />
+                      Download APK
+                    </a>
+                  </Button>
+                )}
+                {repoLink && (
+                  <Button asChild variant="outline">
+                    <a href={repoLink} target="_blank" rel="noopener noreferrer">
+                      View on GitHub
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </Button>
+                )}
+              </div>
+              {project.apk && project.apkNote && (
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-tertiary">{project.apkNote}</p>
               )}
             </div>

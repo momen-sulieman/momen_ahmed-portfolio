@@ -6,6 +6,7 @@ import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
+import { GitHubLink } from "@/components/ui/github-link";
 import { getProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@content/site";
@@ -27,7 +28,9 @@ export default function ProjectsPage() {
             as="h1"
             title="Projects"
             description="Case studies of what I've shipped — what the problem was, what I chose, and what I'd do differently now."
-          />
+          >
+            <GitHubLink />
+          </SectionHeader>
         </Reveal>
 
         {projects.length > 0 ? (
@@ -37,8 +40,6 @@ export default function ProjectsPage() {
             ))}
           </Stagger>
         ) : (
-          /* Honest empty state — no placeholder cards standing in for work
-             that doesn't exist yet. */
           <Reveal className="mt-12 rounded-2xl border border-dashed border-border p-10 text-center">
             <p className="text-pretty text-secondary">
               Case studies are being written up. In the meantime,{" "}

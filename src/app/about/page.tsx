@@ -6,6 +6,7 @@ import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
+import { GitHubLink } from "@/components/ui/github-link";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@content/site";
 
@@ -26,7 +27,9 @@ export default function AboutPage() {
             className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-accent/40 ring-offset-4 ring-offset-background"
             priority
           />
-          <SectionHeader as="h1" title="About" />
+          <SectionHeader as="h1" title="About">
+            <GitHubLink />
+          </SectionHeader>
         </Reveal>
 
         <Reveal className="mt-10 space-y-5 leading-7 text-pretty text-secondary">

@@ -1,33 +1,46 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
 type SectionHeaderProps = {
-  /** Small teal label above the title. */
   eyebrow?: string;
+  eyebrowHref?: string;
   title: string;
   description?: string;
-  /** Optional link rendered opposite the title ("All projects"). */
   action?: { label: string; href: string };
-  /** Page titles are h1; sections within a page are h2. */
   as?: "h1" | "h2";
   className?: string;
+  children?: ReactNode;
 };
 
 export function SectionHeader({
   eyebrow,
+  eyebrowHref,
   title,
   description,
   action,
   as: Heading = "h2",
   className,
+  children,
 }: SectionHeaderProps) {
   return (
     <div className={cn(className)}>
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
         <div>
           {eyebrow && (
-            <p className="text-sm font-medium tracking-wide text-accent uppercase">{eyebrow}</p>
+            <p className="text-sm font-medium tracking-wide text-accent uppercase">
+              {eyebrowHref ? (
+                <Link
+                  href={eyebrowHref}
+                  className="-my-3 inline-block py-3 underline-offset-4 transition-opacity hover:underline active:opacity-70"
+                >
+                  {eyebrow}
+                </Link>
+              ) : (
+                eyebrow
+              )}
+            </p>
           )}
           <Heading
             className={cn(
@@ -51,6 +64,8 @@ export function SectionHeader({
           </Link>
         )}
       </div>
+
+      {children && <div className="mt-3">{children}</div>}
 
       {description && (
         <p className="mt-4 max-w-xl leading-7 text-pretty text-secondary">{description}</p>

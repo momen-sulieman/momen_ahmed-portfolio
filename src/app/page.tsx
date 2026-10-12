@@ -13,6 +13,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { GitHubLink } from "@/components/ui/github-link";
 import { getFeaturedProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { getRatedSkills, getSkillColorIndex } from "@/lib/skill-colors";
@@ -32,7 +33,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
       <Section className="relative overflow-hidden pt-20 sm:pt-28">
         <div
           aria-hidden="true"
@@ -46,6 +46,7 @@ export default function HomePage() {
               <h1 className="mt-4 text-display font-semibold text-balance text-foreground">
                 {site.name}
               </h1>
+              <GitHubLink className="mt-4" />
               <p className="mt-6 text-lg leading-8 text-pretty text-secondary">
                 {site.anchorLine}
               </p>
@@ -82,7 +83,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* About */}
       <Section divided>
         <Container wide>
           <Reveal>
@@ -98,7 +98,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Skills */}
       <Section divided>
         <Container wide>
           <Reveal>
@@ -123,7 +122,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Experience */}
       <Section divided>
         <Container wide>
           <Reveal>
@@ -164,15 +162,10 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Projects */}
       <Section divided>
         <Container wide>
           <Reveal>
-            <SectionHeader
-              eyebrow="Projects"
-              title="Selected work"
-              action={{ label: "All projects", href: "/projects" }}
-            />
+            <SectionHeader eyebrow="Projects" eyebrowHref="/projects" title="Selected work" />
           </Reveal>
 
           {featured.length > 0 ? (
@@ -198,7 +191,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Contact */}
       <Section divided>
         <Container wide>
           <Reveal className="rounded-3xl border border-accent-border bg-accent-subtle px-8 py-14 text-center sm:px-14 sm:py-20">
