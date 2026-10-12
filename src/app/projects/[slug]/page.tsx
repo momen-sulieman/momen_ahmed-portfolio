@@ -20,7 +20,6 @@ type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-/** Every case study is a real, statically rendered URL — never a modal. */
 export function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
 }
@@ -62,33 +61,45 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </Link>
 
           <p className="mt-8 text-sm font-medium text-accent">{project.role}</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl">
-            {project.title}
-          </h1>
-          <p className="mt-4 max-w-2xl leading-7 text-pretty text-secondary">{project.summary}</p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <div>
-              <p className="text-xs tracking-wide text-tertiary uppercase">Period</p>
+          <div className="mt-3 flex items-center gap-4 sm:gap-5">
+            {project.icon && (
+              <Image
+                src={assetPath(project.icon.src)}
+                alt={`${project.title} app icon`}
+                width={192}
+                height={192}
+                priority
+                className="h-[5.5rem] w-[5.5rem] shrink-0 rounded-[22%] border border-border object-cover sm:h-24 sm:w-24"
+              />
+            )}
+            <div className="min-w-0">
+              <h1 className="text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl">
+                {project.title}
+              </h1>
+              <p className="mt-2 text-xs tracking-wide text-tertiary uppercase">Period</p>
               <p className="mt-1 text-sm text-foreground">{project.period}</p>
             </div>
-            {links.length > 0 && (
-              <div className="flex flex-wrap gap-4">
-                {links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent transition-opacity hover:underline active:opacity-70"
-                  >
-                    {link.label}
-                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
+
+          <p className="mt-6 max-w-2xl leading-7 text-pretty text-secondary">{project.summary}</p>
+
+          {links.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-4">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent transition-opacity hover:underline active:opacity-70"
+                >
+                  {link.label}
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          )}
 
           <ul className="mt-6 flex flex-wrap gap-2">
             {project.stack.map((tech) => (

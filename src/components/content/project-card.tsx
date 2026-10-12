@@ -26,10 +26,21 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
 
       <div className="flex flex-1 flex-col gap-3 p-6">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-base font-semibold text-foreground">{project.title}</h3>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            {project.icon && (
+              <Image
+                src={assetPath(project.icon.src)}
+                alt=""
+                width={112}
+                height={112}
+                className="h-14 w-14 shrink-0 rounded-[22%] border border-border object-cover"
+              />
+            )}
+            <h3 className="truncate text-base font-semibold text-foreground">{project.title}</h3>
+          </div>
           <ArrowUpRight
-            className="mt-1 h-4 w-4 shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            className="h-4 w-4 shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             aria-hidden="true"
           />
         </div>
