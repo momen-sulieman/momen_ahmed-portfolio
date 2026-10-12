@@ -76,6 +76,8 @@ export type Site = {
   anchorLine: string;
   location: string;
   email: string;
+  phone: string;
+  whatsapp: string;
   socials: SocialLink[];
   summary: string;
   stats: Stat[];
@@ -95,7 +97,8 @@ export const site: Site = {
 
   location: "Giza - Egypt",
   email: "momen.sulieman9@gmail.com",
-
+  phone: "+201557830189",
+  whatsapp: "+249969272829",
   // No verified profile URLs yet. The header, footer and contact page all
   // render conditionally on this being non-empty.
   socials: [],

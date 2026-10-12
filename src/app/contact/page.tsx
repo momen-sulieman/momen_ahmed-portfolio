@@ -1,11 +1,13 @@
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
+import { CopyButton } from "@/components/features/copy-button";
 import { CopyEmailButton } from "@/components/features/copy-email-button";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@content/site";
 
@@ -16,6 +18,8 @@ export const metadata = pageMetadata({
 });
 
 export default function ContactPage() {
+  const whatsappHref = `https://wa.me/${site.whatsapp.replace(/\D/g, "")}`;
+
   return (
     <Section className="pt-16 sm:pt-20">
       <Container>
@@ -39,11 +43,32 @@ export default function ContactPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            <Phone className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+            <a
+              href={`tel:${site.phone}`}
+              className="text-lg font-medium text-foreground transition-colors hover:text-accent active:opacity-70"
+            >
+              {site.phone}
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <WhatsAppIcon className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-medium text-foreground transition-colors hover:text-accent active:opacity-70"
+            >
+              {site.whatsapp}
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3">
             <MapPin className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <span className="text-secondary">{site.location}</span>
           </div>
 
-          {/* Social links render only once real, verified profiles exist. */}
           {site.socials.length > 0 && (
             <ul className="flex flex-wrap gap-4">
               {site.socials.map((social) => (
@@ -69,6 +94,8 @@ export default function ContactPage() {
               </a>
             </Button>
             <CopyEmailButton email={site.email} />
+            <CopyButton value={site.phone} label="Copy call number" />
+            <CopyButton value={site.whatsapp} label="Copy WhatsApp number" />
           </div>
         </Reveal>
       </Container>
