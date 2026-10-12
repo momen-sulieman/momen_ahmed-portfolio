@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {repoLink && (
                   <Button asChild variant="outline">
                     <a href={repoLink} target="_blank" rel="noopener noreferrer">
-                      View on GitHub
+                      View code on GitHub
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </a>
                   </Button>
