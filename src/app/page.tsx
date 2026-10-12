@@ -1,10 +1,11 @@
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import momenAvatar from "@/assets/momen-avatar.jpg";
 import { ProjectCard } from "@/components/content/project-card";
 import { SkillBar } from "@/components/content/skill-bar";
+import { CopyButton } from "@/components/features/copy-button";
 import { CopyEmailButton } from "@/components/features/copy-email-button";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -14,6 +15,7 @@ import { Stagger } from "@/components/motion/stagger";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { GitHubLink } from "@/components/ui/github-link";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { getFeaturedProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { getRatedSkills, getSkillColorIndex } from "@/lib/skill-colors";
@@ -208,6 +210,16 @@ export default function HomePage() {
                 </a>
               </Button>
               <CopyEmailButton email={site.email} />
+              <CopyButton
+                value={site.phone}
+                label="Copy call number"
+                icon={<Phone className="h-4 w-4" aria-hidden="true" />}
+              />
+              <CopyButton
+                value={site.whatsapp}
+                label="Copy WhatsApp number"
+                icon={<WhatsAppIcon className="h-4 w-4" />}
+              />
             </div>
           </Reveal>
         </Container>

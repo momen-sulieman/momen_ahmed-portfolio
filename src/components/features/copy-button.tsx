@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 
@@ -9,10 +9,12 @@ export function CopyButton({
   value,
   label = "Copy",
   size,
+  icon,
 }: {
   value: string;
   label?: string;
   size?: "default" | "sm";
+  icon?: ReactNode;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -35,7 +37,7 @@ export function CopyButton({
         </>
       ) : (
         <>
-          <Copy className="h-4 w-4" aria-hidden="true" />
+          {icon ?? <Copy className="h-4 w-4" aria-hidden="true" />}
           {label}
         </>
       )}
