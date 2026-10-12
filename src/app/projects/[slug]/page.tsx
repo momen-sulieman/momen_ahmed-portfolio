@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Download } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +12,7 @@ import { Prose } from "@/components/layout/prose";
 import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { assetPath } from "@/lib/paths";
@@ -98,6 +99,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               ))}
+            </div>
+          )}
+
+          {project.apk && (
+            <div className="mt-6">
+              <Button asChild>
+                <a href={assetPath(project.apk)} download>
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  Download APK
+                </a>
+              </Button>
+              {project.apkNote && (
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-tertiary">{project.apkNote}</p>
+              )}
             </div>
           )}
 

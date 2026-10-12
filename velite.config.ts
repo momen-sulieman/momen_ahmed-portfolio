@@ -20,6 +20,8 @@ const projects = defineCollection({
         .optional(),
       cover: s.image().optional(),
       icon: s.image().optional(),
+      apk: s.string().optional(),
+      apkNote: s.string().optional(),
       gallery: s
         .array(s.object({ image: s.image(), caption: s.string() }))
         .optional(),
