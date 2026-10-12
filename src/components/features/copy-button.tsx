@@ -5,7 +5,15 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-export function CopyButton({ value, label }: { value: string; label: string }) {
+export function CopyButton({
+  value,
+  label = "Copy",
+  size,
+}: {
+  value: string;
+  label?: string;
+  size?: "default" | "sm";
+}) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -19,7 +27,7 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
   }
 
   return (
-    <Button type="button" variant="outline" onClick={copy}>
+    <Button type="button" variant="outline" size={size} onClick={copy}>
       {copied ? (
         <>
           <Check className="h-4 w-4" aria-hidden="true" />

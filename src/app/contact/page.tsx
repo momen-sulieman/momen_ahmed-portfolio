@@ -33,16 +33,11 @@ export default function ContactPage() {
 
         <Reveal className="mt-10 flex flex-col gap-6">
           <div className="flex items-center gap-3">
-            <Mail className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-            <a
-              href={`mailto:${site.email}`}
-              className="text-lg font-medium text-foreground transition-colors hover:text-accent active:opacity-70"
-            >
-              {site.email}
-            </a>
+            <MapPin className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+            <span className="text-secondary">{site.location}</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Phone className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <a
               href={`tel:${site.phone}`}
@@ -50,9 +45,10 @@ export default function ContactPage() {
             >
               {site.phone}
             </a>
+            <CopyButton value={site.phone} size="sm" />
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <WhatsAppIcon className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <a
               href={whatsappHref}
@@ -62,11 +58,17 @@ export default function ContactPage() {
             >
               {site.whatsapp}
             </a>
+            <CopyButton value={site.whatsapp} size="sm" />
           </div>
 
           <div className="flex items-center gap-3">
-            <MapPin className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-            <span className="text-secondary">{site.location}</span>
+            <Mail className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+            <a
+              href={`mailto:${site.email}`}
+              className="text-lg font-medium text-foreground transition-colors hover:text-accent active:opacity-70"
+            >
+              {site.email}
+            </a>
           </div>
 
           {site.socials.length > 0 && (
@@ -94,8 +96,6 @@ export default function ContactPage() {
               </a>
             </Button>
             <CopyEmailButton email={site.email} />
-            <CopyButton value={site.phone} label="Copy call number" />
-            <CopyButton value={site.whatsapp} label="Copy WhatsApp number" />
           </div>
         </Reveal>
       </Container>
