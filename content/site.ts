@@ -93,7 +93,7 @@ export const site: Site = {
   anchorLine:
     "I build cross-platform apps in Flutter, and I write the requirements that ERP systems get built from. Most of my work is turning what a business actually needs into something a system — or an app — can execute.",
 
-  location: "Sudan / Egypt",
+  location: "Giza / Egypt",
   email: "momen.sulieman9@gmail.com",
 
   // No verified profile URLs yet. The header, footer and contact page all
