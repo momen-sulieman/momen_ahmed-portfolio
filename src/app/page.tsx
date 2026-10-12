@@ -200,7 +200,7 @@ export default function HomePage() {
               Let&apos;s talk
             </h2>
             <p className="mx-auto mt-3 max-w-md leading-7 text-pretty text-secondary">
-              The fastest way to reach me is email. I read everything that comes in.
+              You can reach me from any provided way but i recommend WhatsApp.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button asChild>
