@@ -1,12 +1,5 @@
 import { defineCollection, defineConfig, s } from "velite";
 
-/**
- * Case studies only. There is deliberately no post/article collection —
- * this is a portfolio, not a blog.
- *
- * `slug` is permanent: renaming one after publish breaks a real, indexable
- * URL, so it requires a redirect in next.config.ts instead.
- */
 const projects = defineCollection({
   name: "Project",
   pattern: "projects/**/*.mdx",
@@ -26,7 +19,7 @@ const projects = defineCollection({
         })
         .optional(),
       cover: s.image().optional(),
-      /** Screenshot tour. Each shot needs a caption — it doubles as the alt text. */
+      icon: s.image().optional(),
       gallery: s
         .array(s.object({ image: s.image(), caption: s.string() }))
         .optional(),
