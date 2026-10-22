@@ -198,7 +198,7 @@ export const site: Site = {
       issuer: "ILC Soft Training / ILearn Code Academy",
       date: "2026",
       detail: "Interface design principles, UX workflow, and modern design tooling.",
-      image: "/certificates/ui-ux-course.png",
+      image: "/certificates/ui-ux.png",
     },
   ],
 
