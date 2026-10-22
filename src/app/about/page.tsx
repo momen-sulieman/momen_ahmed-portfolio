@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 import momenAvatar from "@/assets/momen-avatar.jpg";
+import { CertificateViewer } from "@/components/features/certificate-viewer";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
-import { CertificateViewer } from "@/components/features/certificate-viewer";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
 import { GitHubLink } from "@/components/ui/github-link";
@@ -60,14 +60,20 @@ export default function AboutPage() {
         </Reveal>
         <Stagger className="mt-6 space-y-5">
           {site.education.map((entry) => (
-            <div key={entry.credential} className="border-l border-accent-border pl-5">
-              <p className="font-medium text-foreground">{entry.credential}</p>
-              <p className="mt-1 text-sm text-secondary">
-                {[entry.institution, entry.location].filter(Boolean).join(", ")}
-              </p>
-              <p className="mt-1 text-sm text-tertiary">
-                {[entry.date, entry.detail].filter(Boolean).join(" · ")}
-              </p>
+            <div
+              key={entry.credential}
+              className="flex items-start justify-between gap-4 border-l border-accent-border pl-5"
+            >
+              <div className="min-w-0">
+                <p className="font-medium text-foreground">{entry.credential}</p>
+                <p className="mt-1 text-sm text-secondary">
+                  {[entry.institution, entry.location].filter(Boolean).join(", ")}
+                </p>
+                <p className="mt-1 text-sm text-tertiary">
+                  {[entry.date, entry.detail].filter(Boolean).join(" · ")}
+                </p>
+              </div>
+              {entry.image && <CertificateViewer src={entry.image} title={entry.credential} />}
             </div>
           ))}
         </Stagger>

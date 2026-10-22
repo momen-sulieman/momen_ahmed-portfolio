@@ -53,6 +53,7 @@ export type EducationEntry = {
   location?: string;
   date: string;
   detail?: string;
+  image?: string;
 };
 
 export type CertificationEntry = {
@@ -123,8 +124,10 @@ export const site: Site = {
   stats: [
     { value: "3+ yrs", label: "ERP requirements engineering" },
     { value: "3 months", label: "English Level B2 telemarketer" },
-    { value: "120 hrs", label: "Flutter development diploma" },
-    { value: "40 hrs", label: "UI/UX design course" },
+    {
+      value: "Diplomas",
+      label: "Advanced Flutter diploma (120 hrs)\nUI/UX design course (40 hrs)",
+    },
     { value: "1+ yrs", label: "Experience in flutter | clean arc - state management 'Cubit' - rest APIs - supabase - firebase" },
   ],
 
@@ -181,12 +184,13 @@ export const site: Site = {
       location: "Sudan",
       date: "Graduated April 2022",
       detail: "Second Class, Division One",
+      image: "/certificates/bachelor.png",
     },
   ],
 
   certifications: [
     {
-      title: "Flutter Development Diploma (120 hours)",
+      title: "Advanced flutter Diploma (120 hours)",
       issuer: "Easy Learn Academy",
       date: "Jan 2026 – May 2026",
       detail:
