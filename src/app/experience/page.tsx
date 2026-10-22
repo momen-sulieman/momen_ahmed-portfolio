@@ -1,8 +1,12 @@
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
+import { Button } from "@/components/ui/button";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@content/site";
 
@@ -45,19 +49,33 @@ export default function ExperiencePage() {
                 </p>
               )}
 
-              <ul className="mt-4 space-y-2">
-                {entry.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="flex gap-3 text-sm leading-6 text-pretty text-secondary"
-                  >
-                    <span
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
-                      aria-hidden="true"
-                    />
-                    {bullet}
-                  </li>
-                ))}
+              <ul className="mt-4 space-y-3">
+                {entry.bullets.map((bullet, index) => {
+                  const action = entry.bulletActions?.[index];
+                  return (
+                    <li key={bullet} className="flex gap-3 text-sm leading-6 text-pretty text-secondary">
+                      <span
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
+                        aria-hidden="true"
+                      />
+                      <div>
+                        <p>{bullet}</p>
+                        {action && (
+                          <Button asChild variant="outline" size="sm" className="mt-2">
+                            {action.external ? (
+                              <a href={action.href} target="_blank" rel="noopener noreferrer">
+                                {action.label}
+                                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                              </a>
+                            ) : (
+                              <Link href={action.href}>{action.label}</Link>
+                            )}
+                          </Button>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </article>
           ))}

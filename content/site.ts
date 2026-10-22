@@ -25,6 +25,14 @@ export type Stat = {
   label: string;
 };
 
+export type BulletAction = {
+  label: string;
+  /** Internal path ("/about") or absolute URL. */
+  href: string;
+  /** Opens in a new tab. Use for links that leave the site. */
+  external?: boolean;
+};
+
 export type ExperienceEntry = {
   role: string;
   /** Absent where the resume didn't name the employer. */
@@ -35,6 +43,8 @@ export type ExperienceEntry = {
   start: string;
   end: string;
   bullets: string[];
+  /** Optional button under a bullet, keyed by the bullet's index in `bullets`. */
+  bulletActions?: Record<number, BulletAction>;
 };
 
 export type EducationEntry = {
@@ -50,6 +60,8 @@ export type CertificationEntry = {
   issuer: string;
   date: string;
   detail?: string;
+  /** Path under public/, e.g. "/certificates/flutter-diploma.png". */
+  image?: string;
 };
 
 export type SkillLevel = {
@@ -94,7 +106,7 @@ export const site: Site = {
   role: "Mobile Application Developer & Systems Analyst",
 
   anchorLine:
-    "I build cross-platform apps in Flutter, and I write the requirements that ERP systems get built from. Most of my work is turning what a business actually needs into something a system — or an app — can execute.",
+    "I build cross-platform apps in Flutter, and I set the requirements that the systems get built from. I turn what a business actually needs into something a system — or an app — can execute and build a mobile app.",
 
   location: "Giza - Egypt",
   email: "momen.sulieman9@gmail.com",
@@ -110,9 +122,10 @@ export const site: Site = {
 
   stats: [
     { value: "3+ yrs", label: "ERP requirements engineering" },
-    { value: "Telemarketer", label: "English Level B2" },
+    { value: "3 months", label: "English Level B2 telemarketer" },
     { value: "120 hrs", label: "Flutter development diploma" },
     { value: "40 hrs", label: "UI/UX design course" },
+    { value: "1+ yrs", label: "Experience in flutter | clean arc - state management 'Cubit' - rest APIs - supabase - firebase" },
   ],
 
   experience: [
@@ -139,6 +152,26 @@ export const site: Site = {
         "Used B2-level English to pitch services, negotiate, and resolve client questions.",
       ],
     },
+    {
+      role: "Flutter Developer",
+      subtitle: "Self-learning and personal app building",
+      start: "November 2025",
+      end: "Present",
+      bullets: [
+        "Successfully completed two specialized training programs in mobile app development.",
+        "Built a large 3-in-1 mobile app (Bakemart), not yet released to the market.",
+        "Built a few small mobile apps for learning purposes (some of them can be found in my GitHub repositories).",
+      ],
+      bulletActions: {
+        0: { label: "View certificates", href: "/about" },
+        1: { label: "View project", href: "/projects/bakemart" },
+        2: {
+          label: "View GitHub",
+          href: "https://github.com/momen-sulieman?tab=repositories",
+          external: true,
+        },
+      },
+    },
   ],
 
   education: [
@@ -158,12 +191,14 @@ export const site: Site = {
       date: "Jan 2026 – May 2026",
       detail:
         "Dart and OOP, Flutter widgets and theming, responsive UI, local storage, REST APIs, Firebase and Supabase, notifications, maps and location, payment integration, and publishing to Google Play.",
+      image: "/certificates/flutter-diploma.png",
     },
     {
       title: "UI/UX Design Course (40 hours)",
       issuer: "ILC Soft Training / ILearn Code Academy",
       date: "2026",
       detail: "Interface design principles, UX workflow, and modern design tooling.",
+      image: "/certificates/ui-ux-course.png",
     },
   ],
 
@@ -174,7 +209,7 @@ export const site: Site = {
         "Flutter",
         "Dart",
         "Cross-platform apps",
-        "State management",
+        "State management 'cubit'",
         "RESTful APIs",
         "Firebase",
         "Supabase",
@@ -197,7 +232,7 @@ export const site: Site = {
     },
     {
       category: "UI/UX & Design",
-      items: ["Interface design principles", "Wireframing", "UX workflows"],
+      items: ["Interface design principles", "Wireframing", "UX workflows", "Figma"],
       level: { label: "Foundational", value: 45 },
     },
     {

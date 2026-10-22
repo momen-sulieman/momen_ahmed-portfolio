@@ -4,6 +4,7 @@ import momenAvatar from "@/assets/momen-avatar.jpg";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
+import { CertificateViewer } from "@/components/features/certificate-viewer";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
 import { GitHubLink } from "@/components/ui/github-link";
@@ -76,14 +77,20 @@ export default function AboutPage() {
         </Reveal>
         <Stagger className="mt-6 space-y-6">
           {site.certifications.map((cert) => (
-            <div key={cert.title} className="border-l border-accent-border pl-5">
-              <p className="font-medium text-foreground">{cert.title}</p>
-              <p className="mt-1 text-sm text-secondary">
-                {cert.issuer} · {cert.date}
-              </p>
-              {cert.detail && (
-                <p className="mt-2 text-sm leading-6 text-pretty text-tertiary">{cert.detail}</p>
-              )}
+            <div
+              key={cert.title}
+              className="flex items-start justify-between gap-4 border-l border-accent-border pl-5"
+            >
+              <div className="min-w-0">
+                <p className="font-medium text-foreground">{cert.title}</p>
+                <p className="mt-1 text-sm text-secondary">
+                  {cert.issuer} · {cert.date}
+                </p>
+                {cert.detail && (
+                  <p className="mt-2 text-sm leading-6 text-pretty text-tertiary">{cert.detail}</p>
+                )}
+              </div>
+              {cert.image && <CertificateViewer src={cert.image} title={cert.title} />}
             </div>
           ))}
         </Stagger>
