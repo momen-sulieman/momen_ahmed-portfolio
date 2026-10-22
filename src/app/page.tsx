@@ -28,7 +28,7 @@ export const metadata = pageMetadata({
 });
 
 const topSkills = [...getRatedSkills()].sort((a, b) => (b.level?.value ?? 0) - (a.level?.value ?? 0));
-const latestRole = site.experience[0];
+const latestRole = site.experience[site.experience.length - 1];
 
 export default function HomePage() {
   const featured = getFeaturedProjects();
@@ -76,9 +76,9 @@ export default function HomePage() {
 
           <Stagger className="mt-16 grid max-w-5xl grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-4">
             {site.stats.map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.value}>
                 <p className="text-2xl font-semibold text-accent sm:text-3xl">{stat.value}</p>
-                <p className="mt-1 text-sm text-secondary">{stat.label}</p>
+                <p className="mt-1 text-sm whitespace-pre-line text-secondary">{stat.label}</p>
               </div>
             ))}
           </Stagger>
