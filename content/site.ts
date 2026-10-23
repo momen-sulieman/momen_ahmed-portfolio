@@ -104,7 +104,7 @@ export type Site = {
 export const site: Site = {
   name: "Momen Ahmed",
   fullName: "Momen Ahmed Abdelmajeed Ahmed",
-  role: "Mobile Application Developer & Systems Analyst",
+  role: "Junior flutter developer | clean architecture",
 
   anchorLine:
     "I build cross-platform apps in Flutter, and I set the requirements that the systems get built from. I turn what a business actually needs into something a system — or an app — can execute and build a mobile app.",
