@@ -22,14 +22,14 @@ export function ScreenshotGallery({ items }: { items: Gallery }) {
     >
       <ul className="flex snap-x snap-mandatory gap-5">
         {items.map((item) => (
-          <li key={item.image.src} className="w-44 shrink-0 snap-start sm:w-56">
+          <li key={item.image.src} className="w-52 shrink-0 snap-start sm:w-64">
             <DeviceFrame>
               <Image
                 src={assetPath(item.image.src)}
                 alt={item.caption}
                 width={item.image.width}
                 height={item.image.height}
-                sizes="(min-width: 640px) 14rem, 11rem"
+                sizes="(min-width: 640px) 16rem, 13rem"
                 className="block h-auto w-full"
                 loading="lazy"
               />
