@@ -29,7 +29,7 @@ export function ScreenshotGallery({ items }: { items: Gallery }) {
                 alt={item.caption}
                 width={item.image.width}
                 height={item.image.height}
-                sizes="(min-width: 640px) 16rem, 13rem"
+                sizes="(min-width: 640px) 14rem, 11rem"
                 className="block h-auto w-full"
                 loading="lazy"
               />
